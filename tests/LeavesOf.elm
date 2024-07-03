@@ -1,8 +1,8 @@
 module LeavesOf exposing (..)
 
 import Expect
-import Main exposing (Tree(..))
 import Test exposing (..)
+import Tree exposing (Tree(..), leaves)
 
 
 suite : Test
@@ -25,7 +25,7 @@ suite =
                         ]
 
                     result =
-                        leavesOf tree
+                        Tree.leaves tree
                 in
                 Expect.equal result leaves
         , test """ 
@@ -61,7 +61,7 @@ suite =
                         ]
 
                     result =
-                        leavesOf tree
+                        Tree.leaves tree
                 in
                 Expect.equal result leaves
         , test """
@@ -117,17 +117,7 @@ suite =
                         leaf1 :: leaves2
 
                     result =
-                        leavesOf tree
+                        Tree.leaves tree
                 in
                 Expect.equal result leaves
         ]
-
-
-leavesOf : Tree -> List Tree
-leavesOf ((Tree { children }) as tree) =
-    case children of
-        Nothing ->
-            [ tree ]
-
-        Just childNodes ->
-            List.concatMap leavesOf childNodes

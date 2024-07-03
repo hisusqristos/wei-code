@@ -1,10 +1,8 @@
 module Variants exposing (..)
 
 import Expect
-import LeavesOf exposing (leavesOf)
-import Main exposing (Tree(..))
-import Set exposing (Set)
-import StepToSum exposing (growBy)
+import Main exposing (variantsOf)
+import Set
 import Test exposing (..)
 
 
@@ -63,29 +61,3 @@ suite =
                 variantsOf 31 coins
                     |> Expect.equal 0
         ]
-
-
-variantsOf : Int -> Set Int -> Int
-variantsOf sum coins =
-    let
-        initNode =
-            Tree
-                { self = sum
-                , parent = 0
-                , change = sum
-                , children = Nothing
-                }
-
-        fullyGrown : Tree -> Bool
-        fullyGrown tree =
-            leavesOf tree |> List.all (\(Tree a) -> a.change == 0)
-
-        grow : Tree -> Tree
-        grow tree =
-            if fullyGrown tree then
-                tree
-
-            else
-                tree |> (growBy coins >> grow)
-    in
-    grow initNode |> (List.length << leavesOf)

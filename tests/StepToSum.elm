@@ -1,10 +1,9 @@
 module StepToSum exposing (..)
 
-import Dict exposing (values)
 import Expect
-import Format exposing (sortTreeChildren)
-import Main exposing (Tree(..))
-import Set exposing (Set)
+import Main exposing (growBy)
+import Tree exposing (Tree(..), sortTreeChildren)
+import Set
 import Test exposing (..)
 
 
@@ -263,33 +262,3 @@ suite =
                 sortTreeChildren artificalLengthen
                     |> Expect.equal (sortTreeChildren lengthenedTree)
         ]
-
-
-growBy : Set Int -> Tree -> Tree
-growBy coins (Tree tree) =
-    let
-        makeChild coin =
-            Tree
-                { self = coin
-                , parent = tree.self
-                , change = tree.change - coin
-                , children = Nothing
-                }
-
-        newCoins change =
-            Set.toList coins |> List.filter ((>=) change)
-
-        breed : List Tree -> List Tree
-        breed =
-            List.map (\(Tree tre) -> growBy (newCoins tre.self |> Set.fromList) (Tree tre))
-    in
-    case ( tree.change, tree.children ) of
-        ( 0, Nothing ) ->
-            Tree tree
-
-        ( _, Nothing ) ->
-            Tree { tree | children = Just (newCoins tree.change |> List.map makeChild) }
-
-        _ ->
-            Tree
-                { tree | children = Maybe.map breed tree.children }

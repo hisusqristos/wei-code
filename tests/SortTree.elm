@@ -1,10 +1,8 @@
-module Format exposing (..)
+module SortTree exposing (..)
 
 import Expect
-import Main exposing (Tree(..))
+import Tree exposing (Tree(..), sortTreeChildren)
 import Test exposing (..)
-import Tree exposing (..)
-
 
 exampleTree1 : Tree
 exampleTree1 =
@@ -156,17 +154,3 @@ tests =
             \_ ->
                 Expect.equal (sortTreeChildren exampleTree2) expectedSortedTree2
         ]
-
-
-sortTreeChildren : Tree -> Tree
-sortTreeChildren (Tree node) =
-    let
-        sortChildren : List Tree -> List Tree
-        sortChildren children =
-            List.sortBy (\(Tree n) -> n.self) children
-
-        sortedChildren : Maybe (List Tree) -> Maybe (List Tree)
-        sortedChildren =
-            Maybe.map (sortChildren >> List.map sortTreeChildren)
-    in
-    Tree { node | children = sortedChildren node.children }
