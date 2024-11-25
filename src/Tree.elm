@@ -1,14 +1,12 @@
 module Tree exposing (..)
 
-
 type Tree
     = Tree
         { self : Int
         , parent : Int
         , change : Int
-        , children : Maybe (List Tree)
+        , children :  List Tree
         }
-
 
 sortTreeChildren : Tree -> Tree
 sortTreeChildren (Tree node) =
@@ -17,9 +15,9 @@ sortTreeChildren (Tree node) =
         sortChildren children =
             List.sortBy (\(Tree n) -> n.self) children
 
-        sortedChildren : Maybe (List Tree) -> Maybe (List Tree)
+        sortedChildren : List Tree -> List Tree
         sortedChildren =
-            Maybe.map (sortChildren >> List.map sortTreeChildren)
+            sortChildren >> List.map sortTreeChildren
     in
     Tree { node | children = sortedChildren node.children }
 
@@ -27,8 +25,8 @@ sortTreeChildren (Tree node) =
 leaves : Tree -> List Tree
 leaves ((Tree { children }) as tree) =
     case children of
-        Nothing ->
+        [] ->
             [ tree ]
 
-        Just childNodes ->
+        childNodes ->
             List.concatMap leaves childNodes

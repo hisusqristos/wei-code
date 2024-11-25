@@ -12,7 +12,7 @@ variantsOf sum coins =
                 { self = sum
                 , parent = 0
                 , change = sum
-                , children = Nothing
+                , children = []
                 }
 
         fullyGrown : Tree -> Bool
@@ -38,7 +38,7 @@ growBy coins (Tree tree) =
                 { self = coin
                 , parent = tree.self
                 , change = tree.change - coin
-                , children = Nothing
+                , children = []
                 }
 
         newCoins change =
@@ -53,12 +53,12 @@ growBy coins (Tree tree) =
                 )
     in
     case ( tree.change, tree.children ) of
-        ( 0, Nothing ) ->
+        ( 0, [] ) ->
             Tree tree
 
-        ( _, Nothing ) ->
-            Tree { tree | children = Just (newCoins tree.change |> List.map makeChild) }
+        ( _, [] ) ->
+            Tree { tree | children = newCoins tree.change |> List.map makeChild }
 
         _ ->
             Tree
-                { tree | children = Maybe.map breed tree.children }
+                { tree | children = breed tree.children }

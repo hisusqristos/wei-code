@@ -2,9 +2,9 @@ module StepToSum exposing (..)
 
 import Expect
 import Main exposing (growBy)
-import Tree exposing (Tree(..), sortTreeChildren)
 import Set
 import Test exposing (..)
+import Tree exposing (Tree(..), sortTreeChildren)
 
 
 suite : Test
@@ -26,7 +26,7 @@ suite =
                             { self = 10
                             , parent = 0
                             , change = 10
-                            , children = Nothing
+                            , children = []
                             }
 
                     lengthenedTree =
@@ -38,7 +38,7 @@ suite =
                             { self = 10
                             , parent = 0
                             , change = 10
-                            , children = Just children
+                            , children = children
                             }
 
                     children : List Tree
@@ -47,7 +47,7 @@ suite =
                             { self = 10
                             , parent = 10
                             , change = 0
-                            , children = Nothing
+                            , children = []
                             }
                         ]
                 in
@@ -69,7 +69,7 @@ suite =
                         { self = 20
                         , parent = 0
                         , change = 20
-                        , children = Nothing
+                        , children = []
                         }
 
                 lengthenedTree =
@@ -81,7 +81,7 @@ suite =
                         { self = 20
                         , parent = 0
                         , change = 20
-                        , children = Just children
+                        , children = children
                         }
 
                 children : List Tree
@@ -90,13 +90,13 @@ suite =
                         { self = 20
                         , parent = 20
                         , change = 0
-                        , children = Nothing
+                        , children = []
                         }
                     , Tree
                         { self = 10
                         , parent = 20
                         , change = 10
-                        , children = Nothing
+                        , children = []
                         }
                     ]
             in
@@ -119,7 +119,7 @@ suite =
                         { self = 50
                         , parent = 0
                         , change = 50
-                        , children = Nothing
+                        , children = []
                         }
 
                 lengthenedTree =
@@ -131,7 +131,7 @@ suite =
                         { self = 50
                         , parent = 0
                         , change = 50
-                        , children = Just children
+                        , children = children
                         }
 
                 children : List Tree
@@ -140,19 +140,19 @@ suite =
                         { self = 50
                         , parent = 50
                         , change = 0
-                        , children = Nothing
+                        , children = []
                         }
                     , Tree
                         { self = 20
                         , parent = 50
                         , change = 30
-                        , children = Nothing
+                        , children = []
                         }
                     , Tree
                         { self = 10
                         , parent = 50
                         , change = 40
-                        , children = Nothing
+                        , children = []
                         }
                     ]
             in
@@ -178,26 +178,25 @@ suite =
                         , parent = 0
                         , change = 50
                         , children =
-                            Just
-                                [ Tree
-                                    { self = 50
-                                    , parent = 50
-                                    , change = 0
-                                    , children = Nothing
-                                    }
-                                , Tree
-                                    { self = 20
-                                    , parent = 50
-                                    , change = 30
-                                    , children = Nothing
-                                    }
-                                , Tree
-                                    { self = 10
-                                    , parent = 50
-                                    , change = 40
-                                    , children = Nothing
-                                    }
-                                ]
+                            [ Tree
+                                { self = 50
+                                , parent = 50
+                                , change = 0
+                                , children = []
+                                }
+                            , Tree
+                                { self = 20
+                                , parent = 50
+                                , change = 30
+                                , children = []
+                                }
+                            , Tree
+                                { self = 10
+                                , parent = 50
+                                , change = 40
+                                , children = []
+                                }
+                            ]
                         }
 
                 lengthenedTree =
@@ -210,26 +209,25 @@ suite =
                         , parent = 0
                         , change = 50
                         , children =
-                            Just
-                                [ Tree
-                                    { self = 50
-                                    , parent = 50
-                                    , change = 0
-                                    , children = Nothing
-                                    }
-                                , Tree
-                                    { self = 20
-                                    , parent = 50
-                                    , change = 30
-                                    , children = Just childrenOf20
-                                    }
-                                , Tree
-                                    { self = 10
-                                    , parent = 50
-                                    , change = 40
-                                    , children = Just childrenOf10
-                                    }
-                                ]
+                            [ Tree
+                                { self = 50
+                                , parent = 50
+                                , change = 0
+                                , children = []
+                                }
+                            , Tree
+                                { self = 20
+                                , parent = 50
+                                , change = 30
+                                , children = childrenOf20
+                                }
+                            , Tree
+                                { self = 10
+                                , parent = 50
+                                , change = 40
+                                , children = childrenOf10
+                                }
+                            ]
                         }
 
                 childrenOf20 : List Tree
@@ -238,13 +236,13 @@ suite =
                         { self = 20
                         , parent = 20
                         , change = 10
-                        , children = Nothing
+                        , children = []
                         }
                     , Tree
                         { self = 10
                         , parent = 20
                         , change = 20
-                        , children = Nothing
+                        , children = []
                         }
                     ]
 
@@ -254,7 +252,7 @@ suite =
                         { self = 10
                         , parent = 10
                         , change = 30
-                        , children = Nothing
+                        , children = []
                         }
                     ]
             in

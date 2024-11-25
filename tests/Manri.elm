@@ -1,10 +1,10 @@
 module Manri exposing (..)
 
 import Expect
-import Tree exposing (sortTreeChildren, Tree(..), leaves)
+import Main exposing (growBy)
 import Set exposing (Set)
 import Test exposing (..)
-import Main exposing (growBy)
+import Tree exposing (Tree(..), leaves, sortTreeChildren)
 
 
 suite : Test
@@ -24,14 +24,13 @@ suite =
                             { self = 10
                             , parent = 0
                             , children =
-                                Just
-                                    [ Tree
-                                        { self = 10
-                                        , parent = 10
-                                        , children = Nothing
-                                        , change = 0
-                                        }
-                                    ]
+                                [ Tree
+                                    { self = 10
+                                    , parent = 10
+                                    , change = 0
+                                    , children = []
+                                    }
+                                ]
                             , change = 10
                             }
                 in
@@ -55,30 +54,28 @@ suite =
                             { self = 20
                             , parent = 0
                             , children =
-                                Just
-                                    [ Tree
-                                        { self = 20
-                                        , parent = 20
-                                        , children =
-                                            Nothing
-                                        , change = 0
-                                        }
-                                    , Tree
-                                        { self = 10
-                                        , parent = 20
-                                        , change = 10
-                                        , children =
-                                            Just
-                                                [ Tree
-                                                    { self = 10
-                                                    , parent = 10
-                                                    , children =
-                                                        Nothing
-                                                    , change = 0
-                                                    }
-                                                ]
-                                        }
-                                    ]
+                                [ Tree
+                                    { self = 20
+                                    , parent = 20
+                                    , children =
+                                        []
+                                    , change = 0
+                                    }
+                                , Tree
+                                    { self = 10
+                                    , parent = 20
+                                    , change = 10
+                                    , children =
+                                        [ Tree
+                                            { self = 10
+                                            , parent = 10
+                                            , children =
+                                                []
+                                            , change = 0
+                                            }
+                                        ]
+                                    }
+                                ]
                             , change = 20
                             }
                 in
@@ -106,14 +103,13 @@ suite =
                             , parent = 60
                             , change = 10
                             , children =
-                                Just
-                                    [ Tree
-                                        { self = 10
-                                        , parent = 50
-                                        , change = 0
-                                        , children = Nothing
-                                        }
-                                    ]
+                                [ Tree
+                                    { self = 10
+                                    , parent = 50
+                                    , change = 0
+                                    , children = []
+                                    }
+                                ]
                             }
 
                     tree : Tree
@@ -123,124 +119,112 @@ suite =
                             , parent = 0
                             , change = 60
                             , children =
-                                Just
-                                    [ fiftysBranch
-                                    , Tree
-                                        { self = 20
-                                        , parent = 60
-                                        , change = 40
-                                        , children =
-                                            Just
+                                [ fiftysBranch
+                                , Tree
+                                    { self = 20
+                                    , parent = 60
+                                    , change = 40
+                                    , children =
+                                        [ Tree
+                                            { self = 20
+                                            , parent = 20
+                                            , change = 20
+                                            , children =
                                                 [ Tree
+                                                    { self = 10
+                                                    , parent = 20
+                                                    , change = 10
+                                                    , children =
+                                                        [ Tree
+                                                            { self = 10
+                                                            , parent = 10
+                                                            , change = 0
+                                                            , children =
+                                                                []
+                                                            }
+                                                        ]
+                                                    }
+                                                , Tree
                                                     { self = 20
                                                     , parent = 20
+                                                    , change = 0
+                                                    , children = []
+                                                    }
+                                                ]
+                                            }
+                                        , Tree
+                                            { self = 10
+                                            , parent = 20
+                                            , change = 30
+                                            , children =
+                                                [ Tree
+                                                    { self = 10
+                                                    , parent = 10
                                                     , change = 20
                                                     , children =
-                                                        Just
-                                                            [ Tree
-                                                                { self = 10
-                                                                , parent = 20
-                                                                , change = 10
-                                                                , children =
-                                                                    Just
+                                                        [ Tree
+                                                            { self = 10
+                                                            , parent = 10
+                                                            , change = 10
+                                                            , children =
+                                                                [ Tree
+                                                                    { self = 10
+                                                                    , parent = 10
+                                                                    , change = 0
+                                                                    , children =
+                                                                        []
+                                                                    }
+                                                                ]
+                                                            }
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                , Tree
+                                    { self = 10
+                                    , parent = 60
+                                    , change = 50
+                                    , children =
+                                        [ Tree
+                                            { self = 10
+                                            , parent = 10
+                                            , change = 40
+                                            , children =
+                                                [ Tree
+                                                    { self = 10
+                                                    , parent = 10
+                                                    , change = 30
+                                                    , children =
+                                                        [ Tree
+                                                            { self = 10
+                                                            , parent = 10
+                                                            , change = 20
+                                                            , children =
+                                                                [ Tree
+                                                                    { self = 10
+                                                                    , parent = 10
+                                                                    , change = 10
+                                                                    , children =
                                                                         [ Tree
                                                                             { self = 10
                                                                             , parent = 10
                                                                             , change = 0
                                                                             , children =
-                                                                                Nothing
+                                                                                []
                                                                             }
                                                                         ]
-                                                                }
-                                                            , Tree
-                                                                { self = 20
-                                                                , parent = 20
-                                                                , change = 0
-                                                                , children = Nothing
-                                                                }
-                                                            ]
-                                                    }
-                                                , Tree
-                                                    { self = 10
-                                                    , parent = 20
-                                                    , change = 30
-                                                    , children =
-                                                        Just
-                                                            [ Tree
-                                                                { self = 10
-                                                                , parent = 10
-                                                                , change = 20
-                                                                , children =
-                                                                    Just
-                                                                        [ Tree
-                                                                            { self = 10
-                                                                            , parent = 10
-                                                                            , change = 10
-                                                                            , children =
-                                                                                Just
-                                                                                    [ Tree
-                                                                                        { self = 10
-                                                                                        , parent = 10
-                                                                                        , change = 0
-                                                                                        , children =
-                                                                                            Nothing
-                                                                                        }
-                                                                                    ]
-                                                                            }
-                                                                        ]
-                                                                }
-                                                            ]
+                                                                    }
+                                                                ]
+                                                            }
+                                                        ]
                                                     }
                                                 ]
-                                        }
-                                    , Tree
-                                        { self = 10
-                                        , parent = 60
-                                        , change = 50
-                                        , children =
-                                            Just
-                                                [ Tree
-                                                    { self = 10
-                                                    , parent = 10
-                                                    , change = 40
-                                                    , children =
-                                                        Just
-                                                            [ Tree
-                                                                { self = 10
-                                                                , parent = 10
-                                                                , change = 30
-                                                                , children =
-                                                                    Just
-                                                                        [ Tree
-                                                                            { self = 10
-                                                                            , parent = 10
-                                                                            , change = 20
-                                                                            , children =
-                                                                                Just
-                                                                                    [ Tree
-                                                                                        { self = 10
-                                                                                        , parent = 10
-                                                                                        , change = 10
-                                                                                        , children =
-                                                                                            Just
-                                                                                                [ Tree
-                                                                                                    { self = 10
-                                                                                                    , parent = 10
-                                                                                                    , change = 0
-                                                                                                    , children =
-                                                                                                        Nothing
-                                                                                                    }
-                                                                                                ]
-                                                                                        }
-                                                                                    ]
-                                                                            }
-                                                                        ]
-                                                                }
-                                                            ]
-                                                    }
-                                                ]
-                                        }
-                                    ]
+                                            }
+                                        ]
+                                    }
+                                ]
                             }
                 in
                 treeOf 60 coins
@@ -261,7 +245,7 @@ treeOf sum coins =
                 { self = sum
                 , parent = 0
                 , change = sum
-                , children = Nothing
+                , children = []
                 }
 
         grow : Tree -> Tree

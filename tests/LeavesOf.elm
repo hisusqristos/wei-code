@@ -16,7 +16,7 @@ suite =
                             { self = 20
                             , parent = 0
                             , change = 30
-                            , children = Nothing
+                            , children = []
                             }
 
                     leaves : List Tree
@@ -41,14 +41,13 @@ suite =
                             , parent = 0
                             , change = 30
                             , children =
-                                Just
-                                    [ Tree
-                                        { self = 20
-                                        , parent = 20
-                                        , change = 10
-                                        , children = Nothing
-                                        }
-                                    ]
+                                [ Tree
+                                    { self = 20
+                                    , parent = 20
+                                    , change = 10
+                                    , children = []
+                                    }
+                                ]
                             }
 
                     leaves =
@@ -56,7 +55,7 @@ suite =
                             { self = 20
                             , parent = 20
                             , change = 10
-                            , children = Nothing
+                            , children = []
                             }
                         ]
 
@@ -79,15 +78,14 @@ suite =
                             , parent = 0
                             , change = 30
                             , children =
-                                Just
-                                    [ leaf1
-                                    , Tree
-                                        { self = 20
-                                        , parent = 20
-                                        , change = 10
-                                        , children = Just leaves2
-                                        }
-                                    ]
+                                [ leaf1
+                                , Tree
+                                    { self = 20
+                                    , parent = 20
+                                    , change = 10
+                                    , children = leaves2
+                                    }
+                                ]
                             }
 
                     leaf1 =
@@ -95,7 +93,7 @@ suite =
                             { self = 20
                             , parent = 20
                             , change = 10
-                            , children = Nothing
+                            , children = []
                             }
 
                     leaves2 =
@@ -103,13 +101,13 @@ suite =
                             { self = 80
                             , parent = 40
                             , change = 20
-                            , children = Nothing
+                            , children = []
                             }
                         , Tree
                             { self = 30
                             , parent = 20
                             , change = 40
-                            , children = Nothing
+                            , children = []
                             }
                         ]
 

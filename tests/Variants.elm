@@ -54,10 +54,5 @@ suite =
                 31 is not formable
             """ <|
             \() ->
-                let
-                    coins =
-                        Set.fromList [ 500, 200, 100, 50, 20, 10 ]
-                in
-                variantsOf 31 coins
-                    |> Expect.equal 0
+                 Expect.fail "unimplemented"
         ]
