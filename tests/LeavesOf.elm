@@ -3,6 +3,8 @@ module LeavesOf exposing (..)
 import Expect
 import Test exposing (..)
 import Tree exposing (Tree(..), leaves)
+import Tree exposing (Tree2)
+import Tree exposing (Tree2(..))
 
 
 suite : Test
@@ -12,14 +14,14 @@ suite =
             \() ->
                 let
                     tree =
-                        Tree
+                        Tree2
                             { self = 20
                             , parent = 0
                             , change = 30
-                            , children = Nothing
+                            , children = []
                             }
 
-                    leaves : List Tree
+                    leaves : List Tree2
                     leaves =
                         [ tree
                         ]
@@ -36,27 +38,26 @@ suite =
             \() ->
                 let
                     tree =
-                        Tree
+                        Tree2
                             { self = 20
                             , parent = 0
                             , change = 30
                             , children =
-                                Just
-                                    [ Tree
+                                    [ Tree2
                                         { self = 20
                                         , parent = 20
                                         , change = 10
-                                        , children = Nothing
+                                        , children = []
                                         }
                                     ]
                             }
 
                     leaves =
-                        [ Tree
+                        [ Tree2
                             { self = 20
                             , parent = 20
                             , change = 10
-                            , children = Nothing
+                            , children = []
                             }
                         ]
 
@@ -74,42 +75,41 @@ suite =
             \() ->
                 let
                     tree =
-                        Tree
+                        Tree2
                             { self = 20
                             , parent = 0
                             , change = 30
                             , children =
-                                Just
                                     [ leaf1
-                                    , Tree
+                                    , Tree2
                                         { self = 20
                                         , parent = 20
                                         , change = 10
-                                        , children = Just leaves2
+                                        , children = leaves2
                                         }
                                     ]
                             }
 
                     leaf1 =
-                        Tree
+                        Tree2
                             { self = 20
                             , parent = 20
                             , change = 10
-                            , children = Nothing
+                            , children = []
                             }
 
                     leaves2 =
-                        [ Tree
+                        [ Tree2
                             { self = 80
                             , parent = 40
                             , change = 20
-                            , children = Nothing
+                            , children = []
                             }
-                        , Tree
+                        , Tree2
                             { self = 30
                             , parent = 20
                             , change = 40
-                            , children = Nothing
+                            , children = []
                             }
                         ]
 

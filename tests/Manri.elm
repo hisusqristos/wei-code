@@ -5,6 +5,7 @@ import Tree exposing (sortTreeChildren, Tree(..), leaves)
 import Set exposing (Set)
 import Test exposing (..)
 import Main exposing (growBy)
+import Tree exposing (Tree2(..))
 
 
 suite : Test
@@ -18,18 +19,17 @@ suite =
                     coins =
                         Set.fromList [ 50, 20, 10 ]
 
-                    tree : Tree
+                    tree : Tree2
                     tree =
-                        Tree
+                        Tree2
                             { self = 10
                             , parent = 0
                             , children =
-                                Just
-                                    [ Tree
+                                    [ Tree2
                                         { self = 10
                                         , parent = 10
-                                        , children = Nothing
                                         , change = 0
+                                        , children = []
                                         }
                                     ]
                             , change = 10
@@ -49,31 +49,29 @@ suite =
                     coins =
                         Set.fromList [ 50, 20, 10 ]
 
-                    tree : Tree
+                    tree : Tree2
                     tree =
-                        Tree
+                        Tree2
                             { self = 20
                             , parent = 0
                             , children =
-                                Just
-                                    [ Tree
+                                    [ Tree2
                                         { self = 20
                                         , parent = 20
                                         , children =
-                                            Nothing
+                                            []
                                         , change = 0
                                         }
-                                    , Tree
+                                    , Tree2
                                         { self = 10
                                         , parent = 20
                                         , change = 10
                                         , children =
-                                            Just
-                                                [ Tree
+                                                [ Tree2
                                                     { self = 10
                                                     , parent = 10
                                                     , children =
-                                                        Nothing
+                                                        []
                                                     , change = 0
                                                     }
                                                 ]
@@ -101,89 +99,81 @@ suite =
                         Set.fromList [ 50, 20, 10 ]
 
                     fiftysBranch =
-                        Tree
+                        Tree2
                             { self = 50
                             , parent = 60
                             , change = 10
                             , children =
-                                Just
-                                    [ Tree
+                                    [ Tree2
                                         { self = 10
                                         , parent = 50
                                         , change = 0
-                                        , children = Nothing
+                                        , children = []
                                         }
                                     ]
                             }
 
-                    tree : Tree
+                    tree : Tree2
                     tree =
-                        Tree
+                        Tree2
                             { self = 60
                             , parent = 0
                             , change = 60
                             , children =
-                                Just
                                     [ fiftysBranch
-                                    , Tree
+                                    , Tree2
                                         { self = 20
                                         , parent = 60
                                         , change = 40
                                         , children =
-                                            Just
-                                                [ Tree
+                                                [ Tree2
                                                     { self = 20
                                                     , parent = 20
                                                     , change = 20
                                                     , children =
-                                                        Just
-                                                            [ Tree
+                                                            [ Tree2
                                                                 { self = 10
                                                                 , parent = 20
                                                                 , change = 10
                                                                 , children =
-                                                                    Just
-                                                                        [ Tree
+                                                                        [ Tree2
                                                                             { self = 10
                                                                             , parent = 10
                                                                             , change = 0
                                                                             , children =
-                                                                                Nothing
+                                                                                []
                                                                             }
                                                                         ]
                                                                 }
-                                                            , Tree
+                                                            , Tree2
                                                                 { self = 20
                                                                 , parent = 20
                                                                 , change = 0
-                                                                , children = Nothing
+                                                                , children = []
                                                                 }
                                                             ]
                                                     }
-                                                , Tree
+                                                , Tree2
                                                     { self = 10
                                                     , parent = 20
                                                     , change = 30
                                                     , children =
-                                                        Just
-                                                            [ Tree
+                                                            [ Tree2
                                                                 { self = 10
                                                                 , parent = 10
                                                                 , change = 20
                                                                 , children =
-                                                                    Just
-                                                                        [ Tree
+                                                                        [ Tree2
                                                                             { self = 10
                                                                             , parent = 10
                                                                             , change = 10
                                                                             , children =
-                                                                                Just
-                                                                                    [ Tree
+                                                                                    [ Tree2
                                                                                         { self = 10
                                                                                         , parent = 10
                                                                                         , change = 0
                                                                                         , children =
-                                                                                            Nothing
+                                                                                            []
                                                                                         }
                                                                                     ]
                                                                             }
@@ -193,42 +183,37 @@ suite =
                                                     }
                                                 ]
                                         }
-                                    , Tree
+                                    , Tree2
                                         { self = 10
                                         , parent = 60
                                         , change = 50
                                         , children =
-                                            Just
-                                                [ Tree
+                                                [ Tree2
                                                     { self = 10
                                                     , parent = 10
                                                     , change = 40
                                                     , children =
-                                                        Just
-                                                            [ Tree
+                                                            [ Tree2
                                                                 { self = 10
                                                                 , parent = 10
                                                                 , change = 30
                                                                 , children =
-                                                                    Just
-                                                                        [ Tree
+                                                                        [ Tree2
                                                                             { self = 10
                                                                             , parent = 10
                                                                             , change = 20
                                                                             , children =
-                                                                                Just
-                                                                                    [ Tree
+                                                                                    [ Tree2
                                                                                         { self = 10
                                                                                         , parent = 10
                                                                                         , change = 10
                                                                                         , children =
-                                                                                            Just
-                                                                                                [ Tree
+                                                                                                [ Tree2
                                                                                                     { self = 10
                                                                                                     , parent = 10
                                                                                                     , change = 0
                                                                                                     , children =
-                                                                                                        Nothing
+                                                                                                        []
                                                                                                     }
                                                                                                 ]
                                                                                         }
@@ -253,20 +238,20 @@ suite =
         ]
 
 
-treeOf : Int -> Set Int -> Tree
+treeOf : Int -> Set Int -> Tree2
 treeOf sum coins =
     let
         initNode =
-            Tree
+            Tree2
                 { self = sum
                 , parent = 0
                 , change = sum
-                , children = Nothing
+                , children = []
                 }
 
-        grow : Tree -> Tree
+        grow : Tree2 -> Tree2
         grow tree =
-            if leaves tree |> List.all (\(Tree a) -> a.change == 0) then
+            if leaves tree |> List.all (\(Tree2 a) -> a.change == 0) then
                 tree
 
             else

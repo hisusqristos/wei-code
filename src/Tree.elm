@@ -9,26 +9,33 @@ type Tree
         , children : Maybe (List Tree)
         }
 
+type Tree2
+    = Tree2
+        { self : Int
+        , parent : Int
+        , change : Int
+        , children :  List Tree2
+        }
 
-sortTreeChildren : Tree -> Tree
-sortTreeChildren (Tree node) =
+sortTreeChildren : Tree2 -> Tree2
+sortTreeChildren (Tree2 node) =
     let
-        sortChildren : List Tree -> List Tree
+        sortChildren : List Tree2 -> List Tree2
         sortChildren children =
-            List.sortBy (\(Tree n) -> n.self) children
+            List.sortBy (\(Tree2 n) -> n.self) children
 
-        sortedChildren : Maybe (List Tree) -> Maybe (List Tree)
+        sortedChildren : List Tree2 -> List Tree2
         sortedChildren =
-            Maybe.map (sortChildren >> List.map sortTreeChildren)
+            sortChildren >> List.map sortTreeChildren
     in
-    Tree { node | children = sortedChildren node.children }
+    Tree2 { node | children = sortedChildren node.children }
 
 
-leaves : Tree -> List Tree
-leaves ((Tree { children }) as tree) =
+leaves : Tree2 -> List Tree2
+leaves ((Tree2 { children }) as tree) =
     case children of
-        Nothing ->
+        [] ->
             [ tree ]
 
-        Just childNodes ->
+        childNodes ->
             List.concatMap leaves childNodes
