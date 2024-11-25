@@ -1,38 +1,29 @@
 module Tree exposing (..)
 
-
 type Tree
     = Tree
         { self : Int
         , parent : Int
         , change : Int
-        , children : Maybe (List Tree)
+        , children :  List Tree
         }
 
-type Tree2
-    = Tree2
-        { self : Int
-        , parent : Int
-        , change : Int
-        , children :  List Tree2
-        }
-
-sortTreeChildren : Tree2 -> Tree2
-sortTreeChildren (Tree2 node) =
+sortTreeChildren : Tree -> Tree
+sortTreeChildren (Tree node) =
     let
-        sortChildren : List Tree2 -> List Tree2
+        sortChildren : List Tree -> List Tree
         sortChildren children =
-            List.sortBy (\(Tree2 n) -> n.self) children
+            List.sortBy (\(Tree n) -> n.self) children
 
-        sortedChildren : List Tree2 -> List Tree2
+        sortedChildren : List Tree -> List Tree
         sortedChildren =
             sortChildren >> List.map sortTreeChildren
     in
-    Tree2 { node | children = sortedChildren node.children }
+    Tree { node | children = sortedChildren node.children }
 
 
-leaves : Tree2 -> List Tree2
-leaves ((Tree2 { children }) as tree) =
+leaves : Tree -> List Tree
+leaves ((Tree { children }) as tree) =
     case children of
         [] ->
             [ tree ]

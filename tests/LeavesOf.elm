@@ -3,8 +3,6 @@ module LeavesOf exposing (..)
 import Expect
 import Test exposing (..)
 import Tree exposing (Tree(..), leaves)
-import Tree exposing (Tree2)
-import Tree exposing (Tree2(..))
 
 
 suite : Test
@@ -14,14 +12,14 @@ suite =
             \() ->
                 let
                     tree =
-                        Tree2
+                        Tree
                             { self = 20
                             , parent = 0
                             , change = 30
                             , children = []
                             }
 
-                    leaves : List Tree2
+                    leaves : List Tree
                     leaves =
                         [ tree
                         ]
@@ -38,22 +36,22 @@ suite =
             \() ->
                 let
                     tree =
-                        Tree2
+                        Tree
                             { self = 20
                             , parent = 0
                             , change = 30
                             , children =
-                                    [ Tree2
-                                        { self = 20
-                                        , parent = 20
-                                        , change = 10
-                                        , children = []
-                                        }
-                                    ]
+                                [ Tree
+                                    { self = 20
+                                    , parent = 20
+                                    , change = 10
+                                    , children = []
+                                    }
+                                ]
                             }
 
                     leaves =
-                        [ Tree2
+                        [ Tree
                             { self = 20
                             , parent = 20
                             , change = 10
@@ -75,23 +73,23 @@ suite =
             \() ->
                 let
                     tree =
-                        Tree2
+                        Tree
                             { self = 20
                             , parent = 0
                             , change = 30
                             , children =
-                                    [ leaf1
-                                    , Tree2
-                                        { self = 20
-                                        , parent = 20
-                                        , change = 10
-                                        , children = leaves2
-                                        }
-                                    ]
+                                [ leaf1
+                                , Tree
+                                    { self = 20
+                                    , parent = 20
+                                    , change = 10
+                                    , children = leaves2
+                                    }
+                                ]
                             }
 
                     leaf1 =
-                        Tree2
+                        Tree
                             { self = 20
                             , parent = 20
                             , change = 10
@@ -99,13 +97,13 @@ suite =
                             }
 
                     leaves2 =
-                        [ Tree2
+                        [ Tree
                             { self = 80
                             , parent = 40
                             , change = 20
                             , children = []
                             }
-                        , Tree2
+                        , Tree
                             { self = 30
                             , parent = 20
                             , change = 40

@@ -2,10 +2,9 @@ module StepToSum exposing (..)
 
 import Expect
 import Main exposing (growBy)
-import Tree exposing (Tree(..), sortTreeChildren)
 import Set
 import Test exposing (..)
-import Tree exposing (Tree2(..))
+import Tree exposing (Tree(..), sortTreeChildren)
 
 
 suite : Test
@@ -21,9 +20,9 @@ suite =
                     coins =
                         Set.fromList [ 30, 20, 10 ]
 
-                    init : Tree2
+                    init : Tree
                     init =
-                        Tree2
+                        Tree
                             { self = 10
                             , parent = 0
                             , change = 10
@@ -33,18 +32,18 @@ suite =
                     lengthenedTree =
                         init |> growBy coins
 
-                    artificalLengthen : Tree2
+                    artificalLengthen : Tree
                     artificalLengthen =
-                        Tree2
+                        Tree
                             { self = 10
                             , parent = 0
                             , change = 10
                             , children = children
                             }
 
-                    children : List Tree2
+                    children : List Tree
                     children =
-                        [ Tree2
+                        [ Tree
                             { self = 10
                             , parent = 10
                             , change = 0
@@ -64,9 +63,9 @@ suite =
                 coins =
                     Set.fromList [ 30, 20, 10 ]
 
-                init : Tree2
+                init : Tree
                 init =
-                    Tree2
+                    Tree
                         { self = 20
                         , parent = 0
                         , change = 20
@@ -76,24 +75,24 @@ suite =
                 lengthenedTree =
                     init |> growBy coins
 
-                artificalLengthen : Tree2
+                artificalLengthen : Tree
                 artificalLengthen =
-                    Tree2
+                    Tree
                         { self = 20
                         , parent = 0
                         , change = 20
                         , children = children
                         }
 
-                children : List Tree2
+                children : List Tree
                 children =
-                    [ Tree2
+                    [ Tree
                         { self = 20
                         , parent = 20
                         , change = 0
                         , children = []
                         }
-                    , Tree2
+                    , Tree
                         { self = 10
                         , parent = 20
                         , change = 10
@@ -114,9 +113,9 @@ suite =
                 coins =
                     Set.fromList [ 50, 20, 10 ]
 
-                init : Tree2
+                init : Tree
                 init =
-                    Tree2
+                    Tree
                         { self = 50
                         , parent = 0
                         , change = 50
@@ -126,30 +125,30 @@ suite =
                 lengthenedTree =
                     init |> growBy coins
 
-                artificalLengthen : Tree2
+                artificalLengthen : Tree
                 artificalLengthen =
-                    Tree2
+                    Tree
                         { self = 50
                         , parent = 0
                         , change = 50
                         , children = children
                         }
 
-                children : List Tree2
+                children : List Tree
                 children =
-                    [ Tree2
+                    [ Tree
                         { self = 50
                         , parent = 50
                         , change = 0
                         , children = []
                         }
-                    , Tree2
+                    , Tree
                         { self = 20
                         , parent = 50
                         , change = 30
                         , children = []
                         }
-                    , Tree2
+                    , Tree
                         { self = 10
                         , parent = 50
                         , change = 40
@@ -172,74 +171,74 @@ suite =
                 coins =
                     Set.fromList [ 50, 20, 10 ]
 
-                init : Tree2
+                init : Tree
                 init =
-                    Tree2
+                    Tree
                         { self = 50
                         , parent = 0
                         , change = 50
                         , children =
-                                [ Tree2
-                                    { self = 50
-                                    , parent = 50
-                                    , change = 0
-                                    , children = []
-                                    }
-                                , Tree2
-                                    { self = 20
-                                    , parent = 50
-                                    , change = 30
-                                    , children = []
-                                    }
-                                , Tree2
-                                    { self = 10
-                                    , parent = 50
-                                    , change = 40
-                                    , children = []
-                                    }
-                                ]
+                            [ Tree
+                                { self = 50
+                                , parent = 50
+                                , change = 0
+                                , children = []
+                                }
+                            , Tree
+                                { self = 20
+                                , parent = 50
+                                , change = 30
+                                , children = []
+                                }
+                            , Tree
+                                { self = 10
+                                , parent = 50
+                                , change = 40
+                                , children = []
+                                }
+                            ]
                         }
 
                 lengthenedTree =
                     init |> growBy coins
 
-                artificalLengthen : Tree2
+                artificalLengthen : Tree
                 artificalLengthen =
-                    Tree2
+                    Tree
                         { self = 50
                         , parent = 0
                         , change = 50
                         , children =
-                                [ Tree2
-                                    { self = 50
-                                    , parent = 50
-                                    , change = 0
-                                    , children = []
-                                    }
-                                , Tree2
-                                    { self = 20
-                                    , parent = 50
-                                    , change = 30
-                                    , children = childrenOf20
-                                    }
-                                , Tree2
-                                    { self = 10
-                                    , parent = 50
-                                    , change = 40
-                                    , children = childrenOf10
-                                    }
-                                ]
+                            [ Tree
+                                { self = 50
+                                , parent = 50
+                                , change = 0
+                                , children = []
+                                }
+                            , Tree
+                                { self = 20
+                                , parent = 50
+                                , change = 30
+                                , children = childrenOf20
+                                }
+                            , Tree
+                                { self = 10
+                                , parent = 50
+                                , change = 40
+                                , children = childrenOf10
+                                }
+                            ]
                         }
 
-                childrenOf20 : List Tree2
+                childrenOf20 : List Tree
                 childrenOf20 =
-                    [ Tree2
+                    [ Tree
                         { self = 20
                         , parent = 20
                         , change = 10
                         , children = []
                         }
-                    , Tree2
+                    , Tree
                         { self = 10
                         , parent = 20
                         , change = 20
@@ -247,9 +246,9 @@ suite =
                         }
                     ]
 
-                childrenOf10 : List Tree2
+                childrenOf10 : List Tree
                 childrenOf10 =
-                    [ Tree2
+                    [ Tree
                         { self = 10
                         , parent = 10
                         , change = 30
